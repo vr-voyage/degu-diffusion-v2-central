@@ -2,6 +2,11 @@
 
 **TODO: Add description**
 
+---
+
+Default `mix new` README content...
+Just ignore this at the moment.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
