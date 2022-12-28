@@ -16,7 +16,7 @@ defmodule LastTests.MixProject do
     [
       mod: { LastTests, [] },
       applications: [:cowboy, :ranch],
-      extra_applications: [:logger]
+      extra_applications: [:logger, :poison]
     ]
   end
 

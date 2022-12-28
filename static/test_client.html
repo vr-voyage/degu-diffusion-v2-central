@@ -18,6 +18,11 @@
 			return li;
 		}
 
+		function log_received(content)
+		{
+			report(`-> ${content}`)
+		}
+
 		function report(message)
 		{
 			status_messages.appendChild(status_message(message));
@@ -44,7 +49,8 @@
 				return;
 			}
 
-			try
+			log_received(event.data);
+			/*try
 			{
 				const sd_response = JSON.parse(event.data);
 				report(sd_response);
@@ -103,7 +109,7 @@
 			{
 				console.log(e);
 				console.log("invalid JSON data received");
-			}
+			}*/
 
 		};
 		
@@ -122,14 +128,31 @@
 		};
 		
 		button_send_job.addEventListener('click', (e) => {
+
 			form_content = {
+				"version": 1,
+				"type": "@AgentIntroduction",
+				"capabilities": ["diffusers"],
+				"specializations": {
+					"diffusers": {
+						"models": [
+							"CompVis/stable-diffusion-v1-4",
+							"runwayml/stable-diffusion-v1-5",
+							"hakurei/waifu-diffusion"
+						],
+						"allow_custom_model": true
+					}
+				}
+			};
+
+			/*form_content = {
 				"prompt":        "Degu version 2 by {random_artists}",
 				"n_inferences":   50,
 				"guidance_scale": 7.5,
 				"deterministic":  true,
 				"width":          512,
 				"height":         512
-			}
+			}*/
 
 			socket.send(JSON.stringify(form_content));
 		})
